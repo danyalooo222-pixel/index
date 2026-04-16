@@ -22,13 +22,16 @@ body {
     overflow-x: hidden; /* Prevents side-scrolling bugs */
 }
 
-/* 2. Navigation Bar */
+/* 2. Navigation Bar - Optimized & Responsive */
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1.5rem 3%;
+    padding: 1rem 5%; 
     position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
     width: 100%;
     z-index: 1000;
     background: rgba(8, 30, 41, 0.8);
@@ -39,38 +42,46 @@ body {
     font-size: 1.6rem;
     font-weight: 800;
     letter-spacing: 2px;
-    margin-left: 0;
-    text-align: left;
-    margin: 0;
-    padding: 0;
+    white-space: nowrap; /* Prevents logo from breaking */
 }
-
-.logo span { color: var(--primary); }
 
 .nav-links {
     display: flex;
     list-style: none;
-    gap: 1.5rem;       /* Use gap instead of margins for spacing between items */
-   align-items: center;
+    gap: 7rem; /* This is the ONLY thing that should control spacing */
+    margin: 0; 
+    padding: 0;
+    width: auto; /* Ensures it only takes as much space as the text needs */
+}
+.nav-links :hover{
+    color: rgba(61, 213, 221, 0.6);
 }
 
-.nav-links li {  margin-left: 0; /* REMOVE the 180px margin that was hiding your Contact link */ }
+.nav-links li {
+    margin: 0; /* Resetting any stray margins */
+    padding: 0;
+}
 
 .nav-links a {
     text-decoration: none;
     color: var(--text);
     font-weight: 500;
-    margin-right: 0;
     transition: 0.3s;
-    white-space: nowrap;
+    white-space: nowrap; /* CRITICAL: Keeps "Contact" on one line */
 }
 
-html {
-    scroll-behavior: smooth;
+/* 2.5 Mobile Fix - If the screen is too small for the text */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 1rem 3%;
+    }
+    .nav-links {
+        gap: 0.8rem; /* Tighten the gap so they fit */
+    }
+    .nav-links a {
+        font-size: 1rem; /* Slightly smaller text */
+    }
 }
-
-.nav-links a:hover { color: var(--primary); }
-
 /* 3. Hero Section */
 .hero {
     height: 100vh;
@@ -1000,4 +1011,52 @@ input:focus, textarea:focus {
     color: var(--primary);
     margin-bottom: 15px;
     opacity: 0.8;
+}
+
+/* --- THE ULTIMATE RESPONSIVE FIX --- */
+
+/* 1. Global Overflow Prevention */
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* 2. Navigation Mobile Adjustment */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 1rem 5%;
+    }
+
+    .nav-links {
+        gap: 0.8rem; /* Keeps links close so they don't push off-screen */
+        width: auto;
+    }
+
+    .nav-links a {
+        font-size: 0.85rem;
+    }
+
+    /* 3. Section Padding Adjustment */
+    .hero, .projects, .skills, footer {
+        padding: 60px 5% !important; /* Reduces large side gaps on mobile */
+    }
+
+    /* 4. Contact Form Fix */
+    #contact-form {
+        padding: 30px 20px; /* Original 60px is too much for mobile */
+        width: 100%;
+        border-radius: 20px;
+    }
+
+    /* 5. Carousel/Testimonial Fix */
+    .testimonial-card {
+        min-width: 100% !important; /* Force cards to stay within screen width */
+        margin: 0;
+        padding: 20px;
+    }
+    
+    .testimonial-track {
+        gap: 0;
+    }
 }
