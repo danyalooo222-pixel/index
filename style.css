@@ -1,0 +1,1003 @@
+/* 1. Global Variables & Resets */
+:root {
+    --primary: #00f2fe;
+    --secondary: #4facfe;
+    --bg: #05191b;
+    --card-bg: #16161a;
+    --text: #ffffff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    scroll-behavior: smooth;
+    overflow-x: hidden; /* Prevents side-scrolling bugs */
+}
+
+/* 2. Navigation Bar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 3%;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+    background: rgba(8, 30, 41, 0.8);
+    backdrop-filter: blur(10px);
+}
+
+.logo {
+    font-size: 1.6rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    margin-left: 0;
+    text-align: left;
+    margin: 0;
+    padding: 0;
+}
+
+.logo span { color: var(--primary); }
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 1.5rem;       /* Use gap instead of margins for spacing between items */
+   align-items: center;
+}
+
+.nav-links li {  margin-left: 0; /* REMOVE the 180px margin that was hiding your Contact link */ }
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text);
+    font-weight: 500;
+    margin-right: 0;
+    transition: 0.3s;
+    white-space: nowrap;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.nav-links a:hover { color: var(--primary); }
+
+/* 3. Hero Section */
+.hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 10%;
+}
+
+.hero h1 {
+    font-size: clamp(2.5rem, 8vw, 4rem);
+    margin-bottom: 1rem;
+}
+
+.highlight {
+    background: linear-gradient(to right, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 30px;
+    background: linear-gradient(45deg, var(--primary), var(--secondary));
+    color: white;
+    text-decoration: none;
+    border-radius: 50px;
+    margin-top: 20px;
+    transition: transform 0.3s;
+}
+
+.btn:hover { transform: translateY(-5px); }
+
+
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin-top: 40px;
+}
+
+.item {
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    background: var(--card-bg);
+}
+
+.item img {
+    width: 100%;
+    display: block;
+    transition: 0.5s;
+}
+/* Projects Section Container */
+.projects {
+    padding: 80px 10%;
+    background-color: var(--bg);
+    text-align: center;
+}
+
+.projects h2 {
+    font-size: 2.5rem;
+    margin-bottom: 50px;
+    background: linear-gradient(to right, var(--primary), var(--secondary));
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Grid Layout */
+.projects-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* The Project Card - Same background as Skill Tags */
+.project-card {
+    background: #16161a;
+    height: auto;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid rgba(0, 242, 254, 0.1);
+    transition: all 0.4s ease;
+    text-align: left;
+}
+
+.project-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--primary);
+    box-shadow: 0 10px 30px rgba(0, 242, 254, 0.15);
+}
+
+.project-image img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.project-content {
+    padding: 25px;
+}
+
+.project-content h3 {
+    margin-bottom: 10px;
+    font-size: 1.4rem;
+    color: var(--primary);
+}
+
+.project-content p {
+    font-size: 0.9rem;
+    color: #888;
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+/* Small Tags inside Cards */
+.mini-tag {
+    font-size: 0.75rem;
+    padding: 5px 12px;
+    background: rgba(0, 242, 254, 0.1);
+    color: var(--primary);
+    border-radius: 20px;
+    margin-right: 5px;
+    border: 1px solid rgba(0, 242, 254, 0.2);
+}
+
+.project-link {
+    display: inline-block;
+    margin-top: 20px;
+    color: var(--text);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: 0.3s;
+}
+
+.project-link:hover {
+    color: var(--secondary);
+    padding-left: 5px;
+}
+
+/* Mobile Fixes */
+@media (max-width: 768px) {
+    .projects { padding: 60px 5%; }
+    .projects-container { grid-template-columns: 1fr; }
+}
+
+.item:hover .item-overlay { opacity: 1; }
+.item:hover img { transform: scale(1.1); }
+
+/* 1. The Container (The Window) */
+
+/* Replace your old carousel/testimonial CSS with this */
+.carousel-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    overflow: hidden;
+    padding: 60px 20px;
+    perspective: 1000px; /* This creates the 3D depth */
+}
+
+.testimonial-track {
+    display: flex;
+    transition: transform 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55); /* Smooth bounce */
+}
+
+.testimonial-card {
+    min-width: calc(33.33% - 40px);
+    margin: 0 20px;
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(0, 242, 254, 0.1);
+    border-radius: 24px;
+    padding: 40px;
+    text-align: center;
+    transition: 0.5s;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+/* The card that is currently being read pops out */
+.testimonial-card.active-card {
+    transform: scale(1.1) translateZ(50px);
+    border-color: var(--primary);
+    background: rgba(0, 242, 254, 0.05);
+    box-shadow: 0 20px 40px rgba(0, 242, 254, 0.2);
+}
+
+/* Mobile Fix: Show 1 card at a time */
+@media (max-width: 768px) {
+    .testimonial-card {
+        min-width: calc(100vw - 40px); /* 100% of the screen width */
+    }
+}
+/* Responsive: Show 1 card on mobile so it doesn't look broken */
+@media (max-width: 768px) {
+    .testimonial-card {
+        min-width: 100%;
+    }
+}
+/* Responsiveness for Cards */
+@media (max-width: 900px) {
+    .testimonial-card { min-width: calc(50% - 20px); }
+}
+
+@media (max-width: 600px) {
+    .testimonial-card { min-width: 100%; }
+}
+
+.stars { color: #ffcc00; margin-bottom: 10px; }
+
+.client-meta {
+    display: flex;
+    align-items: center;
+    font-size: 0.75rem;
+    gap: 7px;
+    margin-top: 20px;
+}
+
+.client-meta h4{
+    font-size: 0.99rem;
+}
+
+.client-meta img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--primary);
+}
+
+/* 6. Carousel Controls */
+.carousel-nav {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.carousel-nav button {
+    background: linear-gradient(45deg, var(--primary), var(--secondary));
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.carousel-nav button:hover {
+    transform: scale(1.1);
+    opacity: 0.9;
+}
+
+/* 7. Contact Form Footer */
+footer { padding: 100px 10%; background: #06171a; text-align: center; }
+
+#contact-form {
+    max-width: 700px;
+    margin: 60px auto;
+    padding: 60px;
+    /* High-end Glassmorphism */
+    background: rgba(126, 18, 18, 0.03); 
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    
+    border-radius: 40px; /* Deep rounded corners for a modern feel */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+    
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Sophisticated glowing corner */
+#contact-form::before {
+    content: "";
+    position: absolute;
+    top: -100px;
+    right: -100px;
+    width: 200px;
+    height: 200px;
+    background: var(--primary);
+    filter: blur(80px);
+    opacity: 0.2;
+    pointer-events: none;
+}
+
+/* Minimalist Input Styling */
+#contact-form input, #contact-form textarea {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 18px;
+    color: white;
+    border-radius: 15px;
+    font-size: 1rem;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#contact-form input:focus, #contact-form textarea:focus {
+    outline: none;
+    background: rgba(0, 0, 0, 0.4);
+    border-color: var(--primary);
+    box-shadow: 0 0 20px rgba(0, 242, 254, 0.1);
+    transform: scale(1.01);
+}
+
+#contact h2{
+    color: #00f2fe;
+}
+
+input, textarea {
+    padding: 15px;
+    background: #25252b;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    outline: none;
+}
+
+input:focus, textarea:focus {
+    border-bottom: 2px solid var(--primary);
+}
+
+.skills {
+    padding: 80px 10%;
+    background-color: var(--bg);
+    text-align: center;
+}
+
+.portfolio-section h2{
+    text-align: center;
+    padding: 80px 10%;
+    color: #00f2fe;
+
+}
+
+.testimonials-section h2{
+    text-align: center;
+    padding: 80px 10%;
+    color: #00f2fe;
+
+}
+
+.skills h2 {
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+    background: linear-gradient(to right, var(--primary), var(--secondary));
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+}
+
+.skills-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.skill-tag {
+    padding: 12px 28px;
+    background: #16161a;
+    color: var(--text);
+    border: 1px solid rgba(0, 242, 254, 0.3);
+    border-radius: 50px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.skill-tag:hover {
+    background: var(--primary);
+    color: var(--bg);
+    transform: translateY(-5px);
+    box-shadow: 0 0 20px rgba(0, 242, 254, 0.6);
+    border-color: var(--primary);
+}
+
+@media (max-width: 600px) {
+    .skills { padding: 60px 5%; }
+    .skill-tag { padding: 10px 20px; font-size: 0.85rem; }
+}
+
+/* Modal Background Overlay */
+.project-modal {
+    display: none; 
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(5, 25, 27, 0.95); /* Matches your --bg */
+    backdrop-filter: blur(10px);
+}
+
+/* The Modal Box */
+.modal-content {
+    background: #16161a;
+    margin: 5% auto;
+    padding: 50px;
+    width: 90%;
+    max-width: 700px;
+    border-radius: 20px;
+    border: 1px solid var(--primary);
+    position: relative;
+    box-shadow: 0 0 50px rgba(0, 242, 254, 0.2);
+    text-align: center;
+}
+
+.close-btn {
+    position: absolute;
+    right: 25px;
+    top: 15px;
+    font-size: 35px;
+    color: var(--text);
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.close-btn:hover { color: var(--primary); }
+
+#modal-title { margin-top: 0; font-size: 2.2rem; }
+#modal-description { color: #888; line-height: 1.8; margin: 20px 0; }
+
+/* Modal Improvements */
+.modal-header { margin-bottom: 20px; }
+.badge {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--primary);
+    border: 1px solid var(--primary);
+    padding: 4px 12px;
+    border-radius: 50px;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+.project-display-box {
+    width: 100%;
+    height: 250px;
+    background: #0a0a0c;
+    border-radius: 15px;
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px dashed rgba(0, 242, 254, 0.3);
+}
+
+.work-canvas { text-align: center; color: #444; }
+.canvas-circle {
+    width: 50px;
+    height: 50px;
+    border: 3px solid var(--primary);
+    border-radius: 50%;
+    margin: 0 auto 10px;
+    box-shadow: 0 0 15px var(--primary);
+}
+
+.modal-footer {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+.modal-footer p {
+    font-size: 0.9rem;
+    color: var(--text);
+    letter-spacing: 1px;
+}
+
+.footer-line {
+    width: 50px;
+    height: 3px;
+    background: var(--primary);
+    margin: 10px auto 0;
+}
+
+.portfolio-section {
+  padding: 50px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.project-grid {
+  display: grid;
+  /* Automatically adjusts the number of columns based on screen width */
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.project-card {
+  position: relative;
+  min-height: 200px;
+  height: auto;
+  border-radius: 8px;
+  background: #08292c;
+}
+
+.project-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures images fill the space without stretching */
+  transition: transform 0.3s ease;
+}
+
+/* Hover Effect for a professional feel */
+.project-card:hover img {
+  transform: scale(1.05);
+}
+
+.project-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.project-card:hover .project-overlay {
+  opacity: 1;
+}
+
+
+
+.projeect-grid {
+  display: grid;
+  /* Automatically adjusts the number of columns based on screen width */
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 15px;
+}
+
+.projeect-card {
+  position: relative;
+  min-height: 200px;
+  height: auto;
+  border-radius: 8px;
+  background: #08292c;
+}
+
+.projeect-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures images fill the space without stretching */
+  transition: transform 0.3s ease;
+}
+
+/* Hover Effect for a professional feel */
+.projeect-card:hover img {
+  transform: scale(1.05);
+}
+
+.projeect-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.projeect-card:hover .projeect-overlay {
+  opacity: 1;
+}
+
+/* 1. Animated Background Gradient for Hero */
+.hero {
+    background: radial-gradient(circle at top right, rgba(0, 242, 254, 0.05), transparent),
+                radial-gradient(circle at bottom left, rgba(79, 172, 254, 0.05), transparent);
+}
+
+/* 2. Floating Animation for Hero Content */
+.hero-content {
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+/* 3. Smooth Hover for Project Cards with Glow */
+.project-card {
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    position: relative;
+}
+
+.project-card:hover {
+    transform: translateY(-15px) scale(1.02) !important;
+    box-shadow: 0 20px 40px rgba(0, 242, 254, 0.2);
+    border-color: var(--primary);
+}
+
+/* 4. Magnetic Button Effect */
+.btn {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    z-index: 1;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: 0.5s;
+}
+
+.btn:hover::before {
+    left: 100%;
+}
+
+/* 5. Skill Tag "Pop" Animation */
+.skill-tag:hover {
+    letter-spacing: 1px;
+    background: linear-gradient(45deg, var(--primary), var(--secondary));
+    color: #000;
+    font-weight: bold;
+}
+
+.project-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.project-card::after {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -60%;
+    width: 20%;
+    height: 200%;
+    background: rgba(255, 255, 255, 0.1);
+    transform: rotate(30deg);
+    transition: all 0.7s ease;
+}
+
+.project-card:hover::after {
+    left: 120%;
+}
+
+/* Glass Shimmer Effect */
+.project-card, .projeect-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.project-card::before, .projeect-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -150%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(
+        to right,
+        transparent,
+        rgba(255, 255, 255, 0.2),
+        transparent
+    );
+    transform: skewX(-25deg);
+    transition: 0.7s;
+}
+
+.project-card:hover::before, .projeect-card:hover::before {
+    left: 150%;
+}
+
+/* Animated Background Container */
+.bg-animation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Keeps it behind your content */
+    background-color: var(--bg);
+    overflow: hidden;
+}
+
+/* The Animated Orbs */
+.bg-animation::before,
+.bg-animation::after {
+    content: "";
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0, 242, 254, 0.1) 0%, transparent 70%);
+    filter: blur(80px);
+    animation: moveOrbs 20s infinite alternate ease-in-out;
+}
+
+.bg-animation::after {
+    background: radial-gradient(circle, rgba(79, 172, 254, 0.1) 0%, transparent 70%);
+    width: 400px;
+    height: 400px;
+    animation-duration: 15s;
+    animation-delay: -5s;
+    right: -100px;
+    bottom: -100px;
+}
+
+@keyframes moveOrbs {
+    0% {
+        transform: translate(-10%, -10%);
+    }
+    100% {
+        transform: translate(50%, 50%);
+    }
+}
+
+#bgCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Keeps it behind everything */
+    background: radial-gradient(circle at center, #0a2529 0%, #05191b 100%);
+}
+
+/* Add a subtle glow to your text so it stands out over the animation */
+.hero-content h1 {
+    text-shadow: 0 0 20px rgba(0, 242, 254, 0.3);
+}
+
+.carousel-controls {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 40px;
+}
+
+.control-btn {
+    background: rgba(0, 242, 254, 0.1);
+    border: 1px solid var(--primary);
+    color: var(--primary);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+}
+
+.control-btn:hover {
+    background: var(--primary);
+    color: #000;
+    box-shadow: 0 0 20px rgba(0, 242, 254, 0.6);
+    transform: scale(1.1);
+}
+
+/* Input Animations */
+.input-group {
+    margin-bottom: 20px;
+    position: relative;
+}
+
+#contact-form input, #contact-form textarea {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(0, 242, 254, 0.2);
+    padding: 15px;
+    color: white;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+#contact-form input:focus, #contact-form textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+    background: rgba(0, 242, 254, 0.05);
+    box-shadow: 0 0 15px rgba(0, 242, 254, 0.3);
+    transform: translateY(-2px);
+}
+
+/* 1. Updated Button Base */
+.send-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    position: relative; /* Essential for the border to anchor to */
+    z-index: 1;
+    background: var(--card-bg); /* Keeps button center dark */
+    padding: 12px 30px;
+    border-radius: 50px;
+    border: none; /* We use the animation for the border instead */
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
+    overflow: visible; /* Allows the glow/border to show */
+}
+
+/* 2. The Rainbow Animation (The "Server Bar" look) */
+.send-btn::before {
+    content: "";
+    position: absolute;
+    top: -2px; left: -2px; right: -2px; bottom: -2px;
+    z-index: -1;
+    /* This creates the multi-color flow you saw in the video */
+    background: linear-gradient(90deg, #4285F4, #34A853, #FBBC05, #EA4335, #4285F4);
+    background-size: 400%;
+    border-radius: 50px; /* Matches your button shape */
+    animation: rainbow-flow 8s linear infinite;
+}
+
+/* 3. The Animation Keyframes */
+@keyframes rainbow-flow {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 400% 0%; }
+}
+
+/* 4. Keep your existing hover icon effect */
+.send-btn i {
+    transition: transform 0.5s ease;
+}
+
+.send-btn:hover i {
+    transform: translate(5px, -5px) scale(1.2);
+    color: var(--primary);
+}
+
+/* WhatsApp Floating Button */
+.whatsapp-float {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    background-color: #25d366;
+    color: #FFF;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 30px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+/* Pulse Effect */
+.whatsapp-float::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #25d366;
+    border-radius: 50%;
+    z-index: -1;
+    animation: pulse 2s infinite;
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.1);
+    background-color: #128c7e;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 0.7;
+    }
+    100% {
+        transform: scale(1.6);
+        opacity: 0;
+    }
+}
+
+.whatsapp-hint {
+    text-align: center;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 30px;
+    font-size: 1.1rem;
+}
+
+.whatsapp-hint span {
+    color: #25d366; /* WhatsApp Green */
+    font-weight: bold;
+    text-shadow: 0 0 10px rgba(37, 211, 102, 0.4);
+}
+
+/* If you choose Option 2, use this instead */
+.whatsapp-hint-small {
+    font-size: 0.9rem;
+    color: var(--primary);
+    margin-bottom: 15px;
+    opacity: 0.8;
+}
