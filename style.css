@@ -242,59 +242,46 @@ body {
 /* 1. The Container (The Window) */
 
 /* Replace your old carousel/testimonial CSS with this */
+/* 1. Fix the Container */
 .carousel-container {
-    max-width: 1200px;
-    margin: 0 auto;
+    max-width: 100%;
     overflow: hidden;
-    padding: 60px 20px;
-    perspective: 1000px; /* This creates the 3D depth */
+    padding: 40px 10px;
+    perspective: none; /* Disabling perspective on mobile stops the lag */
 }
 
+/* 2. Fix the Track */
 .testimonial-track {
     display: flex;
-    transition: transform 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55); /* Smooth bounce */
+    /* Changed to a simpler transition to prevent mobile stuttering */
+    transition: transform 0.5s ease-out; 
 }
 
+/* 3. Fix the Cards for Mobile */
 .testimonial-card {
-    min-width: calc(33.33% - 40px);
-    margin: 0 20px;
-    background: rgba(255, 255, 255, 0.03);
-    backdrop-filter: blur(15px);
-    border: 1px solid rgba(0, 242, 254, 0.1);
-    border-radius: 24px;
-    padding: 40px;
-    text-align: center;
-    transition: 0.5s;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    /* Forces exactly one card to fill the screen width */
+    min-width: 100%; 
+    margin: 0;
+    padding: 30px 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    box-sizing: border-box; /* Ensures padding doesn't add to the width */
+    transform: none !important; /* Disables the 3D 'pop out' which causes the cut-off */
 }
 
-/* The card that is currently being read pops out */
-.testimonial-card.active-card {
-    transform: scale(1.1) translateZ(50px);
-    border-color: var(--primary);
-    background: rgba(0, 242, 254, 0.05);
-    box-shadow: 0 20px 40px rgba(0, 242, 254, 0.2);
-}
-
-/* Mobile Fix: Show 1 card at a time */
-@media (max-width: 768px) {
-    .testimonial-card {
-        min-width: calc(100vw - 40px); /* 100% of the screen width */
+/* 4. Active Card Logic */
+/* Only use the scale effect on desktop; it's too heavy for most mobile browsers */
+@media (min-width: 769px) {
+    .carousel-container {
+        perspective: 1000px;
     }
-}
-/* Responsive: Show 1 card on mobile so it doesn't look broken */
-@media (max-width: 768px) {
     .testimonial-card {
-        min-width: 100%;
+        min-width: calc(33.33% - 40px);
+        margin: 0 20px;
     }
-}
-/* Responsiveness for Cards */
-@media (max-width: 900px) {
-    .testimonial-card { min-width: calc(50% - 20px); }
-}
-
-@media (max-width: 600px) {
-    .testimonial-card { min-width: 100%; }
+    .testimonial-card.active-card {
+        transform: scale(1.1) translateZ(50px);
+    }
 }
 
 .stars { color: #ffcc00; margin-bottom: 10px; }
