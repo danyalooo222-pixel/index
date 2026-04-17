@@ -242,47 +242,40 @@ body {
 /* 1. The Container (The Window) */
 
 /* Replace your old carousel/testimonial CSS with this */
-/* 1. Fix the Container */
 .carousel-container {
-    max-width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
     overflow: hidden;
-    padding: 40px 10px;
-    perspective: none; /* Disabling perspective on mobile stops the lag */
+    padding: 60px 20px;
+    perspective: 1000px; /* This creates the 3D depth */
 }
 
-/* 2. Fix the Track */
 .testimonial-track {
     display: flex;
-    /* Changed to a simpler transition to prevent mobile stuttering */
-    transition: transform 0.5s ease-out; 
+    transition: transform 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55); /* Smooth bounce */
 }
 
-/* 3. Fix the Cards for Mobile */
 .testimonial-card {
-    /* Forces exactly one card to fill the screen width */
-    min-width: 100%; 
-    margin: 0;
-    padding: 30px 20px;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 20px;
-    box-sizing: border-box; /* Ensures padding doesn't add to the width */
-    transform: none !important; /* Disables the 3D 'pop out' which causes the cut-off */
+    min-width: calc(33.33% - 40px);
+    margin: 0 20px;
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(0, 242, 254, 0.1);
+    border-radius: 24px;
+    padding: 40px;
+    text-align: center;
+    transition: 0.5s;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
 }
 
-/* 4. Active Card Logic */
-/* Only use the scale effect on desktop; it's too heavy for most mobile browsers */
-@media (min-width: 769px) {
-    .carousel-container {
-        perspective: 1000px;
-    }
-    .testimonial-card {
-        min-width: calc(33.33% - 40px);
-        margin: 0 20px;
-    }
-    .testimonial-card.active-card {
-        transform: scale(1.1) translateZ(50px);
-    }
+/* The card that is currently being read pops out */
+.testimonial-card.active-card {
+    transform: scale(1.1) translateZ(50px);
+    border-color: var(--primary);
+    background: rgba(0, 242, 254, 0.05);
+    box-shadow: 0 20px 40px rgba(0, 242, 254, 0.2);
 }
+
 
 .stars { color: #ffcc00; margin-bottom: 10px; }
 
@@ -1045,5 +1038,44 @@ html, body {
     
     .testimonial-track {
         gap: 0;
+    }
+}
+
+
+/* --- THE FINAL CAROUSEL FIX --- */
+
+/* This fixes the "Cut off" and "Overlay" on mobile */
+@media (max-width: 800px) {
+    .carousel-container {
+        perspective: none !important; /* Removes 3D lag */
+        padding: 20px 0 !important;
+        overflow: hidden !important;
+    }
+
+    .testimonial-track {
+        display: flex !important;
+        gap: 0 !important; /* Removes gaps that cause misalignment */
+    }
+
+    .testimonial-card {
+        /* Force exactly ONE card to be the full width of the screen */
+        min-width: 100% !important; 
+        max-width: 100% !important;
+        margin: 0 !important;
+        
+        /* Stop the 3D stacking */
+        transform: none !important; 
+        position: relative !important;
+        left: 0 !important;
+        
+        /* Keep your style, but make it work */
+        backdrop-filter: blur(10px) !important;
+        border-radius: 15px !important;
+    }
+
+    /* Hide the 'pop out' effect on mobile because it causes the lag */
+    .testimonial-card.active-card {
+        transform: scale(1) !important;
+        box-shadow: none !important;
     }
 }

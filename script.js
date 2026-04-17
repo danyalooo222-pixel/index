@@ -82,7 +82,7 @@ let index = 0;
 
 function updateCarousel() {
     // Calculate width including the 40px margin (20px left + 20px right)
-    const cardWidth = cards[0].offsetWidth + 40; 
+    const cardWidth = cards[0].offsetWidth; 
     track.style.transform = `translateX(${-index * cardWidth}px)`;
 
     // Highlight the active card
