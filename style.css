@@ -99,6 +99,7 @@ body {
 
 .highlight {
     background: linear-gradient(to right, var(--primary), var(--secondary));
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -582,7 +583,7 @@ input:focus, textarea:focus {
 
 .project-card img {
   width: 100%;
-  height: 100%;
+  height: auto;
   object-fit: cover; /* Ensures images fill the space without stretching */
   transition: transform 0.3s ease;
 }
@@ -613,26 +614,31 @@ input:focus, textarea:focus {
 
 
 
+/* 1. The Grid: Handles the sequence perfectly */
 .projeect-grid {
   display: grid;
-  /* Automatically adjusts the number of columns based on screen width */
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 15px;
+  /* This creates 2 columns on desktop, 1 on mobile automatically */
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+  gap: 20px;
+  width: 100%;
 }
 
-.projeect-card {
-  position: relative;
-  min-height: 200px;
-  height: auto;
-  border-radius: 8px;
-  background: #08292c;
+/* 2. The Card: Fixes the cutting */
+.project-card {
+  width: 100% !important; /* Forces card to stay inside the grid cell */
+  max-width: 100%;        /* Prevents it from ever being wider than the screen */
+  height: 400px;          /* Set ONE consistent height for the whole sequence */
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 20px;
 }
 
-.projeect-card img {
+/* 3. The Image: Ensures nothing is squashed */
+.project-card img {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Ensures images fill the space without stretching */
-  transition: transform 0.3s ease;
+  object-fit: cover; /* This makes different sized images fit the 400px box perfectly */
 }
 
 /* Hover Effect for a professional feel */
@@ -1079,3 +1085,4 @@ html, body {
         box-shadow: none !important;
     }
 }
+
