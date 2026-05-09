@@ -21,31 +21,63 @@
     <div class="bg-animation"></div>
     <canvas id="bgCanvas"></canvas>
     <nav class="navbar">
-        <div class="logo">DANYAL<span style="color: rgb(64, 207, 207);">ALI</span></div>
+            <div class="logo" style="font-size: 19px;">DANYAL<span style="color: rgb(64, 207, 207);">ALI</span></div>
         <ul class="nav-links">
             <li><a href="#home">Home</a></li>
-            <li><a href="#work">Work</a></li>
+            <li><a href="javascript:void(0)" onclick="openAbout()">About</a></li>
             <li><a href="#projects">Services</a></li>
-            <li><a href="#contact">Contact</a></li>
         </ul>
-        <div class="burger">
-            <div class="line1"></div>
-            <div class="line2"></div>
-            <div class="line3"></div>
-        </div>
-    </nav>
+        <div class="nav-actions">
+        <a href="https://wa.me/923149258016" class="btn-talk" target="_blank">
+            <span>Let's Talk</span>
+        </a>
+    </div>
+    <div class="burger" onclick="toggleMenu()">
+        <div class="line1"></div>
+        <div class="line2"></div>
+        <div class="line3"></div>
+    </div>
 
-    <header id="home" class="hero" data-aos="zoom-in">
-        <div class="hero-content">
-            <h1 data-aos="zoom-out-up" data-aos-duration="1200">
-    Building things <span class="highlight" data-aos="fade-left" data-aos-delay="600">people love </span>to look at
-</h1>
-            <p data-aos="fade-up" data-aos-delay="400">Bringing static art to life through digital magic.</p>
-            <a href="#work" class="btn">View My Services</a>
+    <div class="mobile-menu">
+        <ul class="mobile-links">
+            <li><a href="#home" onclick="toggleMenu()">Home</a></li>
+            <li><a href="javascript:void(0)" onclick="openAbout(); toggleMenu()">About</a></li>
+            <li><a href="#services" onclick="toggleMenu()">Services</a></li>
+            <li>
+            <a href="https://wa.me/923149258016" class="btn-talk" target="_blank" style="margin-top: 20px;">Let's Talk</a></li>
+        </ul>
+    </div>
+  
+    </nav>
+<header id="home" class="hero">
+    <div class="hero-wrapper">
+        <div class="hero-content" data-aos="fade-right">
+            <h1>Building things <br> 
+                <span class="gradient-text">people love</span> <br>
+                to look at
+            </h1>
+          <p class="hero-description">Helping brands win more sales with <span class="text-white">attractive and high performing</span> responsive websites.</p>
+            <div class="hero-actions">
+                <a href="javascript:void(0)" class="btn-premium" onclick="openWork()">
+    <span>View My Work</span>
+    <div class="btn-glow"></div>
+</a>
+            </div>
         </div>
-    </header>
+
+     <div class="hero-visual" data-aos="fade-up" data-aos-delay="300">
+    <div class="visual-portal">
+        <div class="inner-glow"></div>
+        <div class="portal-core">
+            <i class="fas fa-layer-group"></i> 
+        </div>
+        <div class="lens-flare"></div>
+    </div>
+</div>
+    </div>
+</header>
         <section id="projects" class="projects">
-    <h2>About Me</h2>
+    <h2>Services</h2>
     <div class="projects-container">
         <div class="project-card" data-aos="fade-up" data-aos-delay="100">
             <div class="project-image">
@@ -105,103 +137,9 @@
         <div class="skill-tag" data-aos="zoom-in" data-aos-delay="800">Git / GitHub</div>
     </div>
 </section>
+
 </section>
 
-<section id="work" class="portfolio-section">
-  <h2>My Projects</h2>
-  <div class="projeect-grid">
-    <div class="project-card" data-aos="fade-up" data-aos-delay="100" style="height: 330px;" width: 600px;>
-      <img src="image.jpg.jpg" alt="Description of project 1" loading="lazy">
-      <div class="project-overlay">
-        <p>Dashboard for a client</p>
-      </div>
-    </div>
-    <div class="project-card" data-aos="fade-up" data-aos-delay="200" style="height: 330px;">
-      <img src="image1.jpg.jpg" alt="Description of project 2" loading="lazy">
-      <div class="project-overlay">
-        <p>Creative design for a startup fast food shop</p>
-      </div>
-    </div>
-    <div class="project-card" data-aos="fade-up">
-      <img src="web9.png" alt="Description of project 2" loading="lazy">
-      <div class="project-overlay">
-        <p>Design for a local brand decoration </p>
-      </div>
-      </div>
-    <div class="project-card" data-aos="fade-up" style="height: 360px;" >
-      <img src="image4.jpg.jpg" alt="Description of project 2" loading="lazy">
-      <div class="project-overlay">
-        <p>Creative design for a house services</p>
-      </div>
-    </div>
-    <div class="project-card" data-aos="fade-up" style="height: 500px; width: 800px;">
-      <img src="image13.jpg" alt="Description of project 2" loading="lazy">
-      <div class="project-overlay">
-        <p>3D design for a saloon shop</p>
-      </div>
-      </div>
-      <div class="project-card" data-aos="fade-up" style="height: 400px; width: 600px;">
-      <img src="image21.jpg" alt="Description of project 2" loading="lazy">
-      <div class="project-overlay">
-        <p>Logo for a client</p>
-      </div>
-      </div>
-      <div class="project-card" data-aos="fade-up" style="height: 330px; width: 600px;">
-      <img src="image11.jpg" alt="Description of project 2" loading="lazy">
-      <div class="project-overlay">
-        <p>Art for a client interest</p>
-      </div>
-      </div>
-      <div class="project-card" data-aos="fade-up" style="height: 300px; width: 600px;">
-      <img src="image33.jpg" alt="Description of project 2" loading="lazy">
-      <div class="project-overlay">
-        <p>3D attractive design for a client </p>
-      </div>
-      </div>
-       <div class="project-card" data-aos="fade-up" style="height: 350px; width: 300px;">
-      <img src="image8.jpg" alt="Description of project 2" loading="lazy">
-      <div class="project-overlay">
-        <p>A modern style for a gym poster</p>
-      </div>
-      </div>
-    <div class="project-card" data-aos="fade-up" style="height: 350px; width: 300px;">
-      <img src="image7.jpg" alt="Description of project 2" loading="lazy">
-      <div class="project-overlay">
-        <p>A glass effect design for a client </p>
-      </div>
-    </div>
-    <div class="project-card" data-aos="fade-up" style="height: 500px; width: 300px;">
-      <img src="image9.jpg.png" alt="Description of project 2" loading="lazy">
-      <div class="project-overlay">
-        <p>Design for a local brand decoration </p>
-      </div>
-      </div> 
-      <div class="project-card" data-aos="fade-up">
-      <img src="web1.png" alt="Description of project 2" loading="lazy">
-      <div class="project-overlay">
-        <p>Website for a photo services agency</p>
-      </div>
-      </div>
-      <div class="project-card" data-aos="fade-up">
-      <img src="web2.png" alt="Description of project 2" loading="lazy">
-      <div class="project-overlay">
-        <p>Website for a Construction Company</p>
-      </div>
-      </div>
-      <div class="project-card" data-aos="fade-up">
-      <img src="web4.png" alt="Description of project 2" loading="lazy">
-      <div class="project-overlay">
-        <p>Website for a business startup</p>
-      </div>
-      </div>
-      <div class="project-card" data-aos="fade-up">
-      <img src="web5.png" alt="Description of project 2" loading="lazy">
-      <div class="project-overlay">
-        <p>Website for a home decoration agency</p>
-      </div>
-      </div>
-      
-</section>
     <footer id="contact" data-aos="fade-up">
     <h2>Let's Collaborate</h2>
     <form id="contact-form">
@@ -235,10 +173,106 @@
   });
 </script>
 <script src="script.js"></script>
-<a href="https://wa.me/923149258016?text=Hi%20Danyal!%20I%20saw%20your%20portfolio%20and%20want%20to%20collaborate." 
-   class="whatsapp-float" 
-   target="_blank">
-    <i class="fab fa-whatsapp"></i>
-</a>
+
+<div id="work-gallery" class="gallery-overlay">
+    <button class="close-gallery" onclick="closeWork()">&times;</button>
+    
+    <div class="gallery-header">
+        <h2>My Work</h2>
+    </div>
+
+    <div class="gallery-grid">
+   
+        <div class="gallery-item" data-aos="fade-up" data-aos-delay="100">
+            <video autoplay muted loop playsinline>
+                <source src="video1.mp4" type="video/mp4">
+            </video>
+            <div class="item-overlay"><span>Portfolio for Suhail iqbal</span></div>
+        </div>
+        <div class="gallery-item" data-aos="fade-up" data-aos-delay="100">
+            <video autoplay muted loop playsinline>
+                <source src="video2.mp4" type="video/mp4">
+            </video>
+            <div class="item-overlay"><span>Portfolio for Hagra rajput</span></div>
+        </div>
+        <div class="gallery-item" data-aos="fade-up" data-aos-delay="100">
+            <video autoplay muted loop playsinline>
+                <source src="video3.mp4" type="video/mp4">
+            </video>
+            <div class="item-overlay"><span>Portfolio for Fatima masood</span></div>
+        </div>
+        <div class="gallery-item" data-aos="fade-up">
+            <img src="image.jpg.jpg" alt="Logo Design">
+            <div class="item-overlay"><span>Dashboard Design</span></div>
+        </div>
+        <div class="gallery-item" data-aos="fade-up">
+            <img src="image3.jpg.png" alt="Logo Design">
+            <div class="item-overlay"><span>Website for dental supplier</span></div>
+        </div>
+        <div class="gallery-item" data-aos="fade-up">
+            <img src="image4.jpg.jpg" alt="Logo Design">
+            <div class="item-overlay"><span>Website for home services</span></div>
+        </div>
+        <div class="gallery-item" data-aos="fade-up">
+            <img src="web1.png" alt="Logo Design">
+            <div class="item-overlay"><span>Website for photo agency</span></div>
+        </div>
+        <div class="gallery-item" data-aos="fade-up">
+            <img src="web2.png" alt="Logo Design">
+            <div class="item-overlay"><span>Website for construction company</span></div>
+        </div>
+        <div class="gallery-item" data-aos="fade-up">
+            <img src="web4.png" alt="Logo Design">
+            <div class="item-overlay"><span>Website for local business</span></div>
+        </div>
+        <div class="gallery-item" data-aos="fade-up">
+            <img src="web5.png" alt="Logo Design">
+            <div class="item-overlay"><span>Website for home decor agency</span></div>
+        </div>
+        <div class="gallery-item" data-aos="fade-up">
+            <img src="web9.png" alt="Logo Design">
+            <div class="item-overlay"><span>Website for hotel services</span></div>
+        </div>
+        <div class="gallery-item" data-aos="fade-up">
+            <img src="web21.png" alt="Logo Design">
+            <div class="item-overlay"><span>Website for tour services</span></div>
+        </div>
+        <div class="gallery-item" data-aos="fade-up">
+            <img src="web99.png" alt="Logo Design">
+            <div class="item-overlay"><span>Website for a startup brand</span></div>
+        </div>
+
+        </div>
+        
+</div>
+
+<div id="about-drawer" class="about-panel">
+    <button class="close-about" onclick="closeAbout()">&times;</button>
+    
+    <div class="about-content">
+        <div class="about-image-wrapper">
+            <img src="dani.png" alt="Danyal Ali" class="about-img">
+            <div class="img-glow"></div>
+        </div>
+
+        <div class="about-text">
+            <h2>Hi, I'm <span class="highlight">Danyal!</span></h2>
+            <p class="main-bio">
+                I am a professional UI/UX designer with over 5 years of experience delivering high-quality, user-centric designs for clients worldwide. I specialize in crafting intuitive and visually compelling interfaces that drive engagement and solve complex user problems.
+            </p>
+            
+            <h3>What I Offer:</h3>
+            <ul class="offer-list">
+                <li><i class="fas fa-check-circle"></i> <strong>Modern UI/UX:</strong> Sleek, functional, and user-first interfaces.</li>
+                <li><i class="fas fa-check-circle"></i> <strong>Web Design:</strong> Responsive, conversion-focused layouts for any device.</li>
+                <li><i class="fas fa-check-circle"></i> <strong>Landing Pages:</strong> High-impact designs tailored for startups and businesses.</li>
+            </ul>
+
+            <p class="closing-statement">
+                I am passionate about blending creativity with strategy to help your brand grow. <strong>Let’s collaborate to turn your vision into a reality!</strong>
+            </p>
+        </div>
+    </div>
+</div>
 </body>
 </html>

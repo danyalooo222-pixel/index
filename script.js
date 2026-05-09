@@ -16,14 +16,15 @@ function openProject(projectId) {
 function closeProject() {
     document.getElementById("projectModal").style.display = "none";
 }
-// 1. Navigation & Burger Menu
-const burger = document.querySelector('.burger');
-const nav = document.querySelector('.nav-links');
-
-burger.addEventListener('click', () => {
-    nav.classList.toggle('nav-active');
-    burger.classList.toggle('toggle');
-});
+// Optimized Navbar Scroll Animation
+window.addEventListener('scroll', () => {
+    const nav = document.querySelector('.navbar');
+    if (window.scrollY > 50) {
+        nav.classList.add('scrolled');
+    } else {
+        nav.classList.remove('scrolled');
+    }
+}, { passive: true });
 
 // 2. Portfolio Filtering Logic
 const filterButtons = document.querySelectorAll('.filter-btn');
@@ -48,7 +49,7 @@ filterButtons.forEach(button => {
     });
 });
 
-// Replace Section 3 with Magnetic Navbar Effect
+
 const navbar = document.querySelector('.navbar');
 window.addEventListener('scroll', () => {
     if (window.scrollY > 50) {
@@ -62,38 +63,14 @@ window.addEventListener('scroll', () => {
     }
 });
 
-// Subtle Parallax for Images
-document.addEventListener("mousemove", (e) => {
-    const moveX = (e.clientX - window.innerWidth / 2) * 0.01;
-    const moveY = (e.clientY - window.innerHeight / 2) * 0.01;
-    
-    const heroImg = document.querySelector('.hero-content');
-    if(heroImg) {
-        heroImg.style.transform = `translate(${moveX}px, ${moveY}px)`;
+document.addEventListener('mousemove', (e) => {
+    const portal = document.querySelector('.visual-portal');
+    if (portal) {
+        const x = (window.innerWidth - e.pageX * 2) / 50;
+        const y = (window.innerHeight - e.pageY * 2) / 50;
+        portal.style.transform = `translateX(${x}px) translateY(${y}px)`;
     }
 });
-
-const track = document.querySelector('.testimonial-track');
-const cards = document.querySelectorAll('.testimonial-card');
-const nextBtn = document.getElementById('nextBtn');
-const prevBtn = document.getElementById('prevBtn');
-
-let index = 0;
-
-function updateCarousel() {
-    // Calculate width including the 40px margin (20px left + 20px right)
-    const cardWidth = cards[0].offsetWidth; 
-    track.style.transform = `translateX(${-index * cardWidth}px)`;
-
-    // Highlight the active card
-    cards.forEach((card, i) => {
-        card.classList.remove('active-card');
-        // i === index + 1 assumes 3 cards are visible and we want the middle one
-        if (i === index + 1) {
-            card.classList.add('active-card');
-        }
-    });
-}
 
 nextBtn.addEventListener('click', () => {
     if (index < cards.length - 3) {
@@ -151,18 +128,23 @@ window.addEventListener('scroll', () => {
     { passive: true }
 });
 
-// Add this to your script.js
-const hero = document.querySelector('.hero-content');
+const heroContent = document.querySelector('.hero-content');
+const heroTitle = document.querySelector('.hero h1');
 
 document.addEventListener('mousemove', (e) => {
-    let xAxis = (window.innerWidth / 2 - e.pageX) / 25;
-    let yAxis = (window.innerHeight / 2 - e.pageY) / 25;
+    let xAxis = (window.innerWidth / 2 - e.pageX) / 20;
+    let yAxis = (window.innerHeight / 2 - e.pageY) / 20;
     
-    if(hero) {
-        hero.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+    if(heroContent) {
+        // Tilt the card
+        heroContent.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+        
+        // Slightly move the title at a different speed for a 3D parallax look
+        if(heroTitle) {
+            heroTitle.style.transform = `translateZ(50px) translateX(${xAxis * 0.5}px)`;
+        }
     }
 });
-
 
 const canvas = document.getElementById('bgCanvas');
 const ctx = canvas.getContext('2d');
@@ -281,3 +263,30 @@ contactForm.addEventListener('submit', function(event) {
             console.log('FAILED...', error);
         });
 });
+
+function openWork() {
+    const gallery = document.getElementById('work-gallery');
+    gallery.style.display = 'block';
+    document.body.style.overflow = 'hidden'; // Stop scrolling on the main page
+}
+
+function closeWork() {
+    const gallery = document.getElementById('work-gallery');
+    gallery.style.display = 'none';
+    document.body.style.overflow = 'auto'; // Re-enable scrolling
+}
+
+function openAbout() {
+    document.getElementById('about-drawer').classList.add('active');
+    document.body.style.overflow = 'hidden'; // Lock scrolling
+}
+
+function closeAbout() {
+    document.getElementById('about-drawer').classList.remove('active');
+    document.body.style.overflow = 'auto'; // Unlock scrolling
+}
+
+function toggleMenu() {
+    const menu = document.querySelector('.mobile-menu');
+    menu.classList.toggle('active');
+}
