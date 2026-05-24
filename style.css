@@ -1229,6 +1229,90 @@ html, body {
 
 /* --- MOBILE NAVIGATION FIX --- */
 @media (max-width: 768px) {
+
+    /* --- MOBILE WORK/PROJECT MODAL FIX --- */
+@media (max-width: 768px) {
+    /* Set the modal overlay background box fixed to screen */
+    .gallery-overlay {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100vw !important;
+        height: 100vh !important;
+        z-index: 99999 !important; /* Stacks it over the sticky navbar components */
+        overflow-y: auto !important; /* Allows reading lower project data seamlessly */
+    }
+
+    /* Keep the card container scalable */
+    .gallery-overlay .modal-content {
+        width: 92% !important;
+        margin: 80px auto 30px auto !important; /* Leaves breathing room above headings */
+        padding: 30px 20px !important;
+    }
+
+    /* Transform the Project close button into a high-visibility fixed action button */
+    .gallery-overlay .close-btn {
+        position: fixed !important;
+        top: 20px !important;
+        right: 20px !important;
+        font-size: 42px !important; /* Large profile scale prevents thumb mis-clicks */
+        color: #00f2fe !important; /* High contrast matching the theme text line */
+        cursor: pointer !important;
+        z-index: 100000 !important; /* Highest layer prioritization */
+        line-height: 1 !important;
+        background: rgba(0, 0, 0, 0.6) !important; /* Crisp dark circle background pill */
+        width: 48px !important;
+        height: 48px !important;
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50% !important;
+        border: 1px solid rgba(0, 242, 254, 0.3) !important;
+        box-shadow: 0 0 15px rgba(0, 242, 254, 0.4) !important;
+    }
+}
+
+    .about-drawer {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100vw !important;
+        height: 100vh !important;
+        background-color: #05191b !important; /* Matches your portfolio theme background */
+        z-index: 99999 !important; /* Forces it to stay on top of the navbar and canvas layers */
+        overflow-y: auto !important; /* Restores vertical scrolling inside the bio text */
+        padding: 30px 20px !important;
+        display: none; /* Controlled via your script active class states */
+    }
+
+    .about-drawer.active {
+        display: block !important;
+    }
+
+    /* Target the close cross inside the drawer component explicitly */
+    .about-drawer .close-btn {
+        position: fixed !important;
+        top: 25px !important;
+        right: 25px !important;
+        font-size: 45px !important; /* Larger footprint to prevent mobile mis-taps */
+        color: #00f2fe !important; /* Bright neon theme match */
+        cursor: pointer !important;
+        z-index: 100000 !important; /* Higher stacking index context */
+        line-height: 1 !important;
+        background: rgba(0, 0, 0, 0.4) !important; /* Distinct dark circular backdrop pill */
+        width: 50px !important;
+        height: 50px !important;
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50% !important;
+        border: 1px solid rgba(0, 242, 254, 0.3) !important;
+    }
+
+    /* Create clear separation so that text headings never slide underneath your fixed close target button */
+    .about-drawer .about-content {
+        padding-top: 70px !important;
+    }
     .navbar {
         /* 1. Reset Width & Position */
         width: 92% !important; 
@@ -1386,7 +1470,7 @@ html, body {
 }
 
 /* --- ABOUT DRAWER STYLES --- */
-.about-panel {
+.about-drawer {
     position: fixed;
     top: 0;
     right: -100%; /* Hidden off-screen */
@@ -1402,7 +1486,7 @@ html, body {
     border-left: 1px solid rgba(0, 242, 254, 0.2);
 }
 
-.about-panel.active {
+.about-drawer.active {
     right: 0; /* Slides in */
 }
 

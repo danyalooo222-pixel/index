@@ -265,13 +265,13 @@ contactForm.addEventListener('submit', function(event) {
 });
 
 function openWork() {
-    const gallery = document.getElementById('work-gallery');
+    const gallery = document.getElementById('gallery-overlay');
     gallery.style.display = 'block';
     document.body.style.overflow = 'hidden'; // Stop scrolling on the main page
 }
 
 function closeWork() {
-    const gallery = document.getElementById('work-gallery');
+    const gallery = document.getElementById('gallery-overlay');
     gallery.style.display = 'none';
     document.body.style.overflow = 'auto'; // Re-enable scrolling
 }
